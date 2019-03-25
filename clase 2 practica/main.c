@@ -20,17 +20,26 @@ int main()
     int numero;
     char seguir;
     int contador=0;
+    int contadorNumPares=0;
 
     do
     {
         printf("Ingrese un numero: \n");
         scanf("%d",&numero);
 
+        //verifico que no sea 0
         if(numero == 0)
         {
-            printf("Ingrese un numero distinto de 0: \n");
+            printf("Error, ingrese un numero distinto de 0: \n");
             scanf("%d",&numero);
         }
+
+        //pares
+        if(numero%2 == 0 && numero != 0)
+        {
+            contadorNumPares++;
+        }
+
         printf("Desea ingresar otro numero? s/n \n");
         fflush(stdin);//para limpiar el buffer
         scanf("%s", &seguir);
@@ -39,6 +48,8 @@ int main()
     }while(seguir != 'n');
 
     printf("Cant. numeros ingresados: %d",contador);
+    printf("\nCant. numeros pares: %d", contadorNumPares);
+
 
     return 0;
 }
