@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1553603536 source:c:\users\alumno\desktop\clase 3\clase 3 bibliotecas\main.c
+	<stdlib.h>
+	"ingresos.h"
+
+1553605028 c:\users\alumno\desktop\clase 3\clase 3 bibliotecas\ingresos.h
+
+1553603272 source:c:\users\alumno\desktop\clase 3\clase 3 bibliotecas\ingresos.c
+	<stdio.h>
+	"ingresos.h"
+
