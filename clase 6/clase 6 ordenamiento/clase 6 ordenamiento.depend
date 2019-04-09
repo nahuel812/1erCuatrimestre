@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1554767473 source:c:\users\nahuel\desktop\1ercuatrimestre-master\clase 6\clase 6 ordenamiento\funciones.c
+	"funciones.h"
+
+1554767111 c:\users\nahuel\desktop\1ercuatrimestre-master\clase 6\clase 6 ordenamiento\funciones.h
+
+1554767551 source:c:\users\nahuel\desktop\1ercuatrimestre-master\clase 6\clase 6 ordenamiento\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
