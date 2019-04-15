@@ -33,15 +33,17 @@ int main()
     eEmpleado lista[T];//creo un array de empleados llamado lista
     int opcion;
     char seguir = 's';
+    int legajoABorrar;
 
     inicializarEmpleados(lista,T);
 
     do
     {
-        printf("1-Cargar empleados");
+        printf("1-Alta empleado");
         printf("\n2-Listar todos los empleados");
+        printf("\n3-Baja de empleado");
 
-        printf("\n5-Salir\n");
+        printf("\n0-Salir\n");
         printf("\nElija una opcion: ");
 
         scanf("%d",&opcion);
@@ -54,18 +56,29 @@ int main()
         case 2:
             mostrarTodos(lista,T);
             break;
-/*
+
         case 3:
+            mostrarTodos(lista,T);
+            printf("\nIngrese el legajo del empleado a borrar: ");
+            scanf("%d", &legajoABorrar);
 
-            system("pause");
+            if(borrarUno(lista,T,legajoABorrar))
+            {
+                printf("\nEmpleado eliminado con exito.\n");
+            }
+            else
+            {
+                printf("\nNo se pudo eliminar al empleado.\n");
+            }
+
             break;
-
+/*
         case 4:
 
             system("pause");
             break;
 */
-        case 5:
+        case 0:
             printf("\nSaliendo del programa!\n");
             seguir = 'n';
             break;
@@ -73,10 +86,10 @@ int main()
         default:
             printf("\nNo ingreso una opcion valida!\n");
         }
-/*
+
         system("pause");
         system("cls");
-*/
+
     }while(seguir == 's');
 
     return 0;
@@ -92,6 +105,7 @@ void inicializarEmpleados(eEmpleado lista[],int tam)
     }
 }
 
+
 int buscarLibre(eEmpleado lista[],int tam)
 {
     int i;
@@ -102,26 +116,50 @@ int buscarLibre(eEmpleado lista[],int tam)
         if(lista[i].estado == LIBRE)
         {
             retorno = i;//el indice si encontro libre
+            break;// break para que no siga buscando
         }
     }
     return retorno;
 }
-/*
-int buscarUno(eEmpleado lista[], int tam, int indice)
+
+
+
+//por legajo
+int buscarUno(eEmpleado lista[], int tam, int legajo)
 {
+    int retorno = -1;
+    int i;
 
+    for(i=0 ; i<tam ; i++)
+    {
+        if(lista[i].legajo == legajo)
+        {
+            retorno = i;
+            break;
+        }
+    }
 
-
-
+    return retorno;
 }
+
 
 
 int borrarUno(eEmpleado lista[],int tam,int legajo)
 {
+    int i;
+    int indice;
+    int retorno = 0;
 
+    indice = buscarUno(lista,tam,legajo);
 
+    if(indice != -1)
+    {
+        lista[indice].estado = LIBRE;
+        retorno = 1;
+    }
+    return retorno;
 }
-*/
+
 
 
 
@@ -153,14 +191,14 @@ void cargarUnEmpleado(eEmpleado lista[], int tam)
     }
     else
     {
-        printf("\nNo hay espacio\n");
+        printf("\nNo hay espacio disponible.\n");
     }
 
 }
 
 void mostrarEmpleado(eEmpleado unEmpleado)
 {
-    printf("\n%d-%s-%c-%f-%f\n\n", unEmpleado.legajo,unEmpleado.nombre, unEmpleado.sexo, unEmpleado.sueldoBruto,unEmpleado.sueldoNeto);
+    printf("\n%d-%s-%c-%f-%f\n", unEmpleado.legajo,unEmpleado.nombre, unEmpleado.sexo, unEmpleado.sueldoBruto,unEmpleado.sueldoNeto);
 }
 
 void mostrarTodos(eEmpleado lista[],int tam)
@@ -174,29 +212,4 @@ void mostrarTodos(eEmpleado lista[],int tam)
         }
     }
 }
-
-
-
-
-
-
-/*
- fx pedir datos
-
-
-int getString(char* entrada, char* mensaje, char* mensajeError, int lowLimit, int hiLimit)
-{
-    char buffer[500];
-
-    printf("Ingrese %s:",mensaje);
-    gets(buffer);
-
-    //VALIDACION DE LARGO DE CADENA
-    while(strlen(buffer) < lowLimit && strlen(buffer) > hiLimit)
-    {
-        printf("s")
-    }
-
-}
-*/
 
