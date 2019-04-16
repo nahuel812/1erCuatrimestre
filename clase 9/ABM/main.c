@@ -4,6 +4,14 @@
 
 #define T 10
 
+/*
+agregar estructura 
+sector
+-idSector
+-descripcion
+relacionar las dos estructuras
+*/
+
 
 int menuDeOpciones(char[]);
 
