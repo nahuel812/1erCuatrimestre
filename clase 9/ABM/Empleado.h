@@ -21,4 +21,6 @@ int buscarLibre(eEmpleado[], int);
 void inicializarEmpleados(eEmpleado[], int);
 void hardcodearDatosEmpleados(eEmpleado[], int);
 
+
+int borrarEmpleado(eEmpleado[],int);
 int modificarEmpleado(eEmpleado[], int);

@@ -76,10 +76,10 @@ void hardcodearDatosEmpleados(eEmpleado lista[], int tam)
     int i;
 
     //harcodeo de datos
-    int legajos[]={1,8,9,7,2,4};
-    char nombres[][50]={"Maria","Pedro","Jose","Pedro","Pablo","Mateo"};
-    char sexo[]={'F','M','M','M','M','M'};
-    float sueldosBruto[]={1000,2000,3000,4000,5000,6000};
+    int legajos[]= {1,8,9,7,2,4};
+    char nombres[][50]= {"Maria","Pedro","Jose","Pedro","Pablo","Mateo"};
+    char sexo[]= {'F','M','M','M','M','M'};
+    float sueldosBruto[]= {1000,2000,3000,4000,5000,6000};
 
     for(i=0; i<tam; i++)
     {
@@ -109,6 +109,34 @@ int buscarPorLegajo(eEmpleado lista[], int tam, int legajo)
     return retorno;
 }
 
+int borrarEmpleado(eEmpleado lista[],int tam)
+{
+    int legajoBaja;
+    int indiceBaja;
+    int retorno = 0;
+
+    mostrarListaEmpleados(lista,tam);
+    printf("\nIngrese el legajo a dar de baja: ");
+    scanf("%d",&legajoBaja);
+
+    indiceBaja = buscarPorLegajo(lista,tam,legajoBaja);
+
+    if(indiceBaja != -1)
+    {
+        //hacer confirmacion del dato a borrar
+
+        lista[indiceBaja].estado = LIBRE;
+        printf("\nEmpleado dado de baja con exito\n");
+        retorno = 1;
+    }
+    else
+    {
+        printf("\nNo se puedo dar de baja el empleado\n");
+    }
+    return retorno;
+}
+
+
 int modificarEmpleado(eEmpleado lista[], int tam)
 {
     int retorno = -1;
@@ -122,15 +150,20 @@ int modificarEmpleado(eEmpleado lista[], int tam)
 
     indiceAModificar = buscarPorLegajo(lista,tam,legajoAModificar);
 
-    mostrarEmpleado(lista[indiceAModificar]);
-    opcion = menuDeOpciones("\nMODIFICAR: \n1.Nombre\n2.Sexo\n3.Sueldo bruto\nElija una opcion: ");
-
-    switch(opcion)
+    if(indiceAModificar != -1)
     {
+        printf("\nEmpleado a modificar: \n");
+        mostrarEmpleado(lista[indiceAModificar]);
+        opcion = menuDeOpciones("\n1.Nombre\n2.Sexo\n3.Sueldo bruto\nElija una opcion: ");
+
+        switch(opcion)
+        {
         case 1:
             printf("\nIngrese el nuevo nombre: ");
             fflush(stdin);
             gets(lista[indiceAModificar].nombre);
+            //validacion
+
             printf("\nDato modificado con exito.\n");
             retorno = 1;
             break;
@@ -138,19 +171,28 @@ int modificarEmpleado(eEmpleado lista[], int tam)
             printf("\nIngrese el nuevo sexo: ");
             fflush(stdin);
             scanf("%c", &lista[indiceAModificar].sexo);
+            //validacion
+
             printf("\nDato modificado con exito.\n");
             retorno = 1;
             break;
         case 3:
             printf("\nIngrese el nuevo sueldo bruto: ");
             scanf("%f", &lista[indiceAModificar].sueldoBruto);
+            //validacion
 
             lista[indiceAModificar].sueldoNeto = lista[indiceAModificar].sueldoBruto*0.85;
 
             printf("\nDato modificado con exito.\n");
             retorno = 1;
             break;
+        }
     }
+    else
+    {
+        printf("\nNo existe empleado con el legajo ingresado\n");
+    }
+
     return retorno;
 }
 

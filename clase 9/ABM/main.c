@@ -26,6 +26,9 @@ int main()
             case 1:
                 cargarEmpleado(lista, T);
                 break;
+            case 2:
+                borrarEmpleado(lista,T);
+                break;
             case 3:
                 modificarEmpleado(lista,T);
                 break;
