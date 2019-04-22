@@ -5,18 +5,8 @@
 #define T 10
 
 /*
-agregar estructura
-sector
--idSector
--descripcion
-relacionar las dos estructuras
-*/
-
-/*
-INFORMES
-el/los empleados con mayor sueldo
-cant de emplados llamados carlos y ganen mas de 20k
-
+agrear eSector
+calcular el sueldo con los sectores
 */
 
 int menuDeOpciones(char[]);

@@ -229,6 +229,8 @@ int modificarEmpleado(eEmpleado lista[], int tam)
     return retorno;
 }
 
+
+/*
 void informarEmpleados(eEmpleado lista[], int tam)
 {
     int i;
@@ -252,7 +254,7 @@ void informarEmpleados(eEmpleado lista[], int tam)
         }
     }
 }
-
+*/
 
 
 //BUSCAR EL maximo y devuelva el maximo y otra q busque entre los maixmos
@@ -313,3 +315,7 @@ int contarCarlos(eEmpleado lista[], int tam)
     }
     return contadorCarlos;
 }
+
+
+
+
