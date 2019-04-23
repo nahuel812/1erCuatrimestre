@@ -45,3 +45,5 @@ int modificarEmpleado(eEmpleado[], int);
 float buscarSueldoMaximo(eEmpleado[],int);
 void mostrarEmpleadosConSueldoMaximo(eEmpleado[],int);
 int contarCarlos(eEmpleado lista[], int tam);
+
+eSector buscarSectorPorId(eSector[],int tSector ,int idSector);
