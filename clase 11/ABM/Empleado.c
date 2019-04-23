@@ -52,19 +52,22 @@ void hardcodearDatosEmpleados(eEmpleado lista[], int tam)
     float sueldosBruto[]={22000,22000,15000,4000,21000,6000};
     int sector[]={1,2,3,1,2,2};
 
+    int horas[]={20,50,30,25,20,40};
+
     for(i=0; i<tam; i++)
     {
         lista[i].legajo = legajos[i];
         strcpy(lista[i].nombre, nombres[i]);
         lista[i].sexo = sexo[i];
+
+        lista[i].idSector = sector[i];
+        lista[i].cantidadHoras = horas[i];
+
         lista[i].sueldoBruto = sueldosBruto[i];
         lista[i].sueldoNeto = sueldosBruto[i] * 0.85;
         lista[i].estado = OCUPADO;
-
-        lista[i].idSector = sector[i];
     }
 }
-
 
 void mostrarListaEmpleados(eEmpleado lista[], int tEmpleados, eSector sectores[], int tSector)
 {
@@ -92,7 +95,7 @@ void mostrarEmpleado(eEmpleado unEmpleado, eSector sectores[], int tSector)
             break;
         }
     }
-    printf("%4d %10s %c %4f    %4f    %10s\n", unEmpleado.legajo,unEmpleado.nombre, unEmpleado.sexo, unEmpleado.sueldoBruto,unEmpleado.sueldoNeto,nombreSector);
+    printf("%4d %10s %c  %4f    %4f    %10s\n", unEmpleado.legajo,unEmpleado.nombre, unEmpleado.sexo,unEmpleado.sueldoBruto,unEmpleado.sueldoNeto,nombreSector);
 
 }
 
@@ -129,27 +132,54 @@ int buscarPorLegajo(eEmpleado lista[], int tam, int legajo)
     return retorno;
 }
 
-void altaEmpleado(eEmpleado lista[], int tam)
+void altaEmpleado(eEmpleado listaEmpleados[], int tEmpleados, eSector sectores[],int tSector)
 {
     int indice;
+    int i;
+    float valorHoraSector;
 
-    indice = buscarLibre(lista, tam);
+    indice = buscarLibre(listaEmpleados, tEmpleados);
     if(indice != -1)
     {
         printf("Ingrese legajo: ");
-        scanf("%d", &lista[indice].legajo);
-        printf("Ingrese nombre: ");
+        scanf("%d", &listaEmpleados[indice].legajo);
+        //validar legajo
+        printf("\nIngrese nombre: ");
         fflush(stdin);
-        gets(lista[indice].nombre);
-        printf("Ingrese sexo: ");
+        gets(listaEmpleados[indice].nombre);
+        printf("\nIngrese sexo: ");
         fflush(stdin);
-        scanf("%c", &lista[indice].sexo);
-        printf("Ingrese sueldo bruto: ");
-        scanf("%f", &lista[indice].sueldoBruto);
+        scanf("%c", &listaEmpleados[indice].sexo);
 
-        lista[indice].sueldoNeto =lista[indice].sueldoBruto*0.85;
+        printf("\nIngrese sector: \n");
 
-        lista[indice].estado = OCUPADO;
+
+        //buscarIdSector - funcion que devuelva la aestructura.
+        for(i=0;i<tSector;i++)
+        {
+            printf("%d. %s \n",sectores[i].idSector, sectores[i].nombreSector);
+        }
+        printf("Elija una opcion: ");
+        scanf("%d", &listaEmpleados[indice].idSector);
+
+
+        //pedir horas
+        printf("\nIngrese cantidad de horas: ");
+        scanf("%d", &listaEmpleados[indice].cantidadHoras);
+        for(i=0;i<tSector;i++)
+        {
+            if(listaEmpleados[indice].idSector == sectores[i].idSector)
+            {
+                valorHoraSector = sectores[i].valorHora;
+                break;
+            }
+        }
+
+        listaEmpleados[indice].sueldoBruto = valorHoraSector * listaEmpleados[indice].cantidadHoras;
+        listaEmpleados[indice].sueldoNeto = listaEmpleados[indice].sueldoBruto * 0.85;
+
+
+        listaEmpleados[indice].estado = OCUPADO;
     }
     else
     {

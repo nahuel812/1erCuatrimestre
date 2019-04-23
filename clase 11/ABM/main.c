@@ -28,7 +28,7 @@ int main()
         switch(opcion)
         {
             case 1:
-                altaEmpleado(lista, T);
+                altaEmpleado(lista, T, sectores,3);
                 break;
             case 2:
                 borrarEmpleado(lista,T);
@@ -44,7 +44,6 @@ int main()
                 printf("\nCantidad de carlos cobran mas 20k: %d\n", contarCarlos(lista,T));
 
                 break;
-
 
             case 0:
                 opcion = 0;

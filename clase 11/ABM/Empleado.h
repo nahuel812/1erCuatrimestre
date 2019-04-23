@@ -8,7 +8,7 @@ typedef struct
 {
     int idSector;// pk
     char nombreSector[20];
-    float valor;
+    float valorHora;
 
 }eSector;
 
@@ -38,7 +38,7 @@ void mostrarListaEmpleados(eEmpleado[], int tEmpleados, eSector[], int tSector);
 
 int buscarLibre(eEmpleado[], int);
 
-void altaEmpleado(eEmpleado[], int);
+void altaEmpleado(eEmpleado listaEmpleados[], int tEmpleados, eSector sectores[],int tSector);
 int borrarEmpleado(eEmpleado[],int);
 int modificarEmpleado(eEmpleado[], int);
 
